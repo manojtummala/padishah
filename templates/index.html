@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple Website</title>
+    <style>
+     table {
+       font-family: arial, sans-serif;
+       border-collapse: collapse;
+       width: 100%;
+     }
+
+     td, th {
+       border: 1px solid #dddddd;
+       text-align: left;
+       padding: 8px;
+     }
+
+     tr:nth-child(even) {
+       background-color: #dddddd;
+     }
+     /* div{
+       text-align: right;
+     } */
+
+      .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+
+      .button2:hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      }
+
+
+     </style>
+   </head>
+   <body>
+     <table class='th'>
+       <thead>
+         <tr>
+           <th>Folder Name</th>
+           <th>Profile Name</th>
+           <th>Status</th>
+       </thead>
+     </table>
+
+   <div id="container">
+
+   <script>
+    var table = document.createElement('table'), tr, td, row, cell;
+    for (row = 0; row < 10; row++) {
+      tr = document.createElement('tr');
+        for (cell = 0; cell < 3; cell++) {
+           td = document.createElement('td');
+           tr.appendChild(td);
+           td.innerHTML = row * 22 + cell + 1;
+        }
+        table.appendChild(tr);
+    }
+    document.getElementById('container').appendChild(table);
+
+    document.getElementById("filepicker").addEventListener("change", function(event) {
+    let output = document.getElementById("listing");
+    let files = event.target.files;
+
+    for (let i=0; i<files.length; i++) {
+      let item = document.createElement("li");
+      item.innerHTML = files[i].webkitRelativePath;
+      output.appendChild(item);
+    };
+  }, false);
+  </script>
+  </div>
+
+
+
+   <div>
+     <button class = 'button button2' onClick="window.location.reload();">Refresh Page</button>
+   </div>
+   <h2>Form</h2>
+
+ <form action="/value">
+   <label for="fname">Folder: </label><br>
+   <!-- <input type="text" id="fname" name="fname"><br><br> -->
+   <input type="file" id="filepicker" name="fileList" webkitdirectory multiple />
+   <ul id="listing"></ul>
+   <label for="fname">Profiles:</label><br>
+   <select name="profiles" id="profiles">
+    <option value="1">Profile 1</option>
+    <option value="2">Profile 2</option>
+    <option value="3">Profile 3</option>
+    <option value="4">Profile 4</option>
+  </select>
+  <br><br>
+   <input type="submit" value="Submit">
+ </form>
+ </body>
+
+</html>
